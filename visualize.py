@@ -80,11 +80,11 @@ def showResults(data_path,meas_idx):
     SAVE_PATH = os.path.join(data_path,'Results')
 
     # Load Initial Object, FInal Iteration Object,  correction phase, and |OTF| estimation
-    O0 = np.load(os.path.join(SAVE_PATH,f'Oest0_m{meas_idx}.npy'))
-    O = np.load(os.path.join(SAVE_PATH,f'Oest_m{meas_idx}.npy'))
+    O0 = np.load(os.path.join(SAVE_PATH,f'Oest0_{meas_idx}.npy'))
+    O = np.load(os.path.join(SAVE_PATH,f'Oest_{meas_idx}.npy'))
     phi = torch.load(os.path.join(SAVE_PATH,f'phi_{meas_idx}.trc'))
     N = O0.shape[0] # Get Size of Object
-    OTF = nrm(torch.from_numpy(np.load(os.path.join(SAVE_PATH,f'OTF_m{meas_idx}.npy'))).resize(*(2*[N])).T.abs())
+    OTF = nrm(torch.from_numpy(np.load(os.path.join(SAVE_PATH,f'OTF_{meas_idx}.npy'))).resize(*(2*[N])).T.abs())
 
     # Load Ground Truth if exists
     gt_path = os.path.join(SAVE_PATH,f'gt_{meas_idx}.npy')
@@ -126,6 +126,6 @@ def showResults(data_path,meas_idx):
 
     # Calculate and show PSF
     PSF = center_image(torch.fft.fftshift(torch.fft.ifft2(phi.reshape(N, N).T)).abs().numpy())
-    plt.imshow(nrm(PSF.abs()),cmap=new_cmap)
+    plt.imshow(np.abs(PSF),cmap=new_cmap)
     plt.show()
 
