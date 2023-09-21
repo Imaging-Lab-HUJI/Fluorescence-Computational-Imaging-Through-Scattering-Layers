@@ -2,10 +2,14 @@ import numpy as np
 import torch
 from CTRCLASS import CTR_CLASS
 from torchvision.transforms import CenterCrop
-from utils import mkdir
 from visualize import showResults
 import os
 from mat73 import loadmat
+
+def mkdir(pth):
+    if not os.path.isdir(pth):
+        os.mkdir(pth)
+
 
 ## Reads .mat file of measurements, inserts into a Tensor sized [M,Nx,Ny]
 ## Can also read Ground Truths
