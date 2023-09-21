@@ -12,26 +12,20 @@ This repository contains the implementation of the CTR-CLASS algorithm for incoh
 
 ## Getting Started
 
-### 1. Clone the Repository
 
-```sh
-git clone https://github.com/your_username/your_repository_name.git
-cd your_repository_name
-```
-
-### 2. Install Requirements
+### 1. Install Requirements
 
 ```sh
 pip install -r requirements.txt
 ```
 
-### 3. Download the Data
+### 2. Download the Data
 
 Download the example measurement data from [this link](https://drive.google.com/drive/folders/18A_W_JemctYMtloonCAh3RTWsZfOJyJN?usp=sharing) and place it in a folder of your choice.
 
-### 4. Run the Code
+### 3. Run the Code
 
-1. Open `main.py` and insert the path to the data folder (`data_path`) and specify the ground truth and measurements indices (`ground_truth_idx` and `meas_idx`).
+1. Open `main.py` and insert the path to the data folder (`DATA_PATH`) and specify the ground truth and measurements indices (`ground_truth_idx` and `meas_idx`).
 2. Run `main.py`:
 
 ```sh
