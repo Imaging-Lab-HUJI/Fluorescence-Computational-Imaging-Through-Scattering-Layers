@@ -2,16 +2,14 @@ import numpy as np
 import torch
 from CTRCLASS import CTR_CLASS
 from torchvision.transforms import CenterCrop
-from utils import gauss2D, mkdir
+from utils import mkdir
 from visualize import showResults
 import os
-wavelength = np.float64(532e-3) # [μm]
 from mat73 import loadmat
 
 ## Reads .mat file of measurements, inserts into a Tensor sized [M,Nx,Ny]
 ## Can also read Ground Truths
 def readMAT(matFile,matFileGT = None):
-
 
     # Read Ground Truth
     gt = matFileGT
@@ -49,7 +47,7 @@ def runCLASS(Icam,num_iters=100,cut = 500,keepAspect = False,saveName='Inchoeren
 
 ## Parameters
 DATA_PATH = os.path.join('DATA','08-Aug-2023') # Enter Here the data path
-meas_idx, ground_truth_idx = 4 ,3 # Set measurements and ground truth index (if ground truth doesn't exits, set ground_truth_idx = -1 or ground_truth_idx = None)
+meas_idx, ground_truth_idx = 4 ,-1 # Set measurements and ground truth index (if ground truth doesn't exits, set ground_truth_idx = -1 or ground_truth_idx = None)
 cut = -1 # Set Fourier Domain cut size for (Optional, if not wanted set cut = -1 or cut = None)
 CLASS_iterations = 250 # Set CTR-CLASS number of iterations
 

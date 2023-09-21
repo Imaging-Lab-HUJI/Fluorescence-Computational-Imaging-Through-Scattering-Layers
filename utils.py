@@ -40,18 +40,3 @@ def mkdir(pth):
     if not os.path.isdir(pth):
         os.mkdir(pth)
 
-def circ(a, size = 1025):
-    x = torch.linspace(-size/2, size/2, size,dtype=torch.float64)
-    x, y = torch.meshgrid(x, x)
-    r = torch.hypot(x,y)
-    b = torch.zeros(2*[size],dtype=torch.float64)
-    b[r <= a] = 1
-
-    return b
-def gauss2D(a, size = 1025,half = False):
-    x = torch.linspace(-size/2, size/2, size,dtype=torch.float64)
-    x, y = torch.meshgrid(x, x)
-    r = torch.hypot(x,y)
-    g = torch.exp(-0.5*r/a**2)
-    return g/g.max()
-

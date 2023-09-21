@@ -125,7 +125,8 @@ def showResults(data_path,meas_idx):
     plt.show()
 
     # Calculate and show PSF
-    PSF = center_image(torch.fft.fftshift(torch.fft.ifft2(phi.reshape(N, N).T)).abs().numpy())
+    PSF = center_image(torch.fft.fftshift(torch.fft.ifft2(OTF*phi.reshape(N, N).T)).abs().numpy())
     plt.imshow(np.abs(PSF),cmap=new_cmap)
+    plt.title('Estimated PSF')
     plt.show()
 
