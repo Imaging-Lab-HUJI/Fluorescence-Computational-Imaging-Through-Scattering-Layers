@@ -44,13 +44,10 @@ If you have already run the above steps, you can visualize the results by runnin
 from visualize import showResults
 
 data_path = "path_to_your_data"
-meas_idx = [list_of_your_measurement_indices]
 showResults(data_path, meas_idx)
 ```
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
@@ -65,6 +62,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 }
 ```
 
+```
 CLASS Algorithm
 @article{kang2017high,
   title={High-resolution adaptive optical imaging within thick scattering media using closed-loop accumulation of single scattering},
@@ -76,7 +74,9 @@ CLASS Algorithm
   year={2017},
   publisher={Nature Publishing Group UK London}
 }
+```
 
+```
 CTR-CLASS
 @article{lee2022high,
   title={High-throughput volumetric adaptive optical imaging using compressed time-reversal matrix},
@@ -88,3 +88,4 @@ CTR-CLASS
   year={2022},
   publisher={Nature Publishing Group UK London}
 }
+```
