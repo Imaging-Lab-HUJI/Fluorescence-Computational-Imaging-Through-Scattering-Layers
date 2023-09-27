@@ -38,6 +38,7 @@ If you have already run the above steps, you can visualize the results by runnin
 from visualize import showResults
 
 data_path = "path_to_your_data"
+meas_idx = index of measurement
 showResults(data_path, meas_idx)
 ```
 
