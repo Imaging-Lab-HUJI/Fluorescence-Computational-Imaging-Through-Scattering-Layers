@@ -1,11 +1,11 @@
 
-# CTR-CLASS for Incoherent Data
+# I-CLASS: CLASS for Incoherent Data
 
-This repository contains the implementation of the CTR-CLASS algorithm for incoherent data, such as fluorescence, as described in [title of your paper]. The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency enhancements as described in the paper.
+This repository contains the implementation of the I-CLASS algorithm for incoherent data, such as fluorescence, as described in [title of your paper]. The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency enhancements as described in the paper.
 
 ## Content of the Repository
 
-- `CTRCLASS.py`: The implementation of the CTR-CLASS algorithm with improved memory efficiency.
+- `ICLASS.py`: The implementation of the I-CLASS algorithm with improved memory efficiency.
 - `visualize.py`: A script for visualizing the results obtained from the algorithm.
 - `main.py`: A script to run the whole pipeline, from loading the measurements files to results and visualization.
 - `requirements.txt`: Lists all the Python dependencies required to run the code.
