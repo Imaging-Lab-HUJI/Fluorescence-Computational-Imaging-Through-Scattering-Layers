@@ -51,9 +51,9 @@ def RtoO(x, imsize, real=False):
     return torch.sqrt(torch.mean(i(T).abs() ** 2, 0)).reshape(*imsize)
 
 
-def CTR_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize = None,real=False,device = None):
+def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize = None,real=False,device = None):
     """
-        Estimates the Optical Transfer Function (OTF) using the CTR-CLASS algorithm.
+        Estimates the Optical Transfer Function (OTF) using the I-CLASS algorithm.
 
         Parameters:
             R (torch.Tensor): The input complex-valued Reflection Matrix in the fourier domain, as a torch.Tensor.
