@@ -102,6 +102,6 @@ def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize 
     
     O_est = RtoO(R,imsize)
     np.save(os.path.join(save_path, f'Oest_{save_name}.npy'), O_est)
-    np.save(os.path.join(save_path, f'OTF_{save_name}.npy'), MTF)
+    np.save(os.path.join(save_path, f'MTF_{save_name}.npy'), MTF)
 
-    return R.cpu(), O_est, phi_tot.cpu(), OTF
+    return R.cpu(), O_est, phi_tot.cpu(), MTF
