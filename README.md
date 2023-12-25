@@ -1,13 +1,13 @@
 
-# I-CLASS: CLASS for Incoherent Data
+# Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix
 
-This repository contains the implementation of the I-CLASS algorithm for incoherent data, such as fluorescence, as described in [title of your paper]. The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency enhancements as described in the paper.
+This repository contains the implementation of the I-CLASS algorithm for incoherent data, such as fluorescence, as described in Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix (arxiv xx.xx). The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency enhancements as described in the paper.
 
 ## Content of the Repository
 
 - `ICLASS.py`: The implementation of the I-CLASS algorithm with improved memory efficiency.
 - `visualize.py`: A script for visualizing the results obtained from the algorithm.
-- `main.py`: A script to run the whole pipeline, from loading the measurements files to results and visualization.
+- `main.py`: A script to run the whole pipeline, from loading the measurement files to results and visualization.
 - `requirements.txt`: Lists all the Python dependencies required to run the code.
 
 ## Getting Started
