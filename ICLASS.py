@@ -96,9 +96,8 @@ def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize 
             print(f'Iteration {k}/{num_iters}')
 
     # Final estimation of the object and other outputs
-    MTF = ((T.abs()**2).sum(1))
-    MTF /= MTF.max()
-    MTF = torch.sqrt(MTF).cpu()
+    MTF = ((R.abs()**2).sum(1))
+    MTF = torch.sqrt(MTF / MTF.max()).cpu()
     
     O_est = RtoO(R,imsize)
     np.save(os.path.join(save_path, f'Oest_{save_name}.npy'), O_est)
