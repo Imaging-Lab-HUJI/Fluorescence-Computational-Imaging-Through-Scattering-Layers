@@ -57,30 +57,3 @@ showResults(data_path, meas_idx)
 }
 ```
 
-```
-CLASS Algorithm
-@article{kang2017high,
-  title={High-resolution adaptive optical imaging within thick scattering media using closed-loop accumulation of single scattering},
-  author={Kang, Sungsam and Kang, Pilsung and Jeong, Seungwon and Kwon, Yongwoo and Yang, Taeseok D and Hong, Jin Hee and Kim, Moonseok and Song, Kyung--Deok and Park, Jin Hyoung and Lee, Jun Ho and others},
-  journal={Nature communications},
-  volume={8},
-  number={1},
-  pages={2157},
-  year={2017},
-  publisher={Nature Publishing Group UK London}
-}
-```
-
-```
-CTR-CLASS
-@article{lee2022high,
-  title={High-throughput volumetric adaptive optical imaging using compressed time-reversal matrix},
-  author={Lee, Hojun and Yoon, Seokchan and Loohuis, Pascal and Hong, Jin Hee and Kang, Sungsam and Choi, Wonshik},
-  journal={Light: Science \& Applications},
-  volume={11},
-  number={1},
-  pages={16},
-  year={2022},
-  publisher={Nature Publishing Group UK London}
-}
-```
