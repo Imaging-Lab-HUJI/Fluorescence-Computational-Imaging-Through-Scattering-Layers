@@ -35,23 +35,8 @@ def fftcorr(A, B, mode='same'):
     # Perform inverse 2D FFT on the result and normalize
     return ifft2(f) / (torch.numel(f))
 
-# Retrieve Object from Matrix
-def RtoO(x, imsize, real=False):
-    # Decide on the type of inverse FFT to use based on the `real` flag
-    i = irfft2 if real else ifft2
 
-    # Find Original measurements sizes
-    M, Nx = x.shape[1], imsize[0]
-    Ny = x.shape[0] // Nx
-
-    # Reshape reflection matrix back to measurements
-    T = torch.permute(x.reshape(Ny, Nx, M), [2, 1, 0]).cpu()
-
-    # Compute object
-    return torch.sqrt(torch.mean(i(T).abs() ** 2, 0)).reshape(*imsize)
-
-
-def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize = None,real=False,device = None):
+def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize = None,device = None):
     """
         Estimates the Optical Transfer Function (OTF) using the I-CLASS algorithm.
 
@@ -61,7 +46,6 @@ def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize 
             save_path (str, optional): Path to save intermediate results (default is the current working directory).
             save_name (str, optional): A name prefix for saved files (default is '0').
             imsize (list, optional): A list containing two integers for the output image size (default is None).
-            real (bool, optional): If True, assume the input is a result of rfft2 of a real-valued input  (default is False).
             device (torch.device, optional): Device to perform computations (default is GPU if available, else CPU).
 
         Returns:
@@ -71,6 +55,9 @@ def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize 
                 - phi_tot (torch.Tensor): The correction phase mask.
                 - OTF (torch.Tensor): The absolute value of the Optical Transfer Function (OTF).
         """
+    # Function to estimate the object using R
+    RtoO = lambda T,sz: torch.sqrt(torch.mean(ifft2(T).abs() ** 2, 1)).reshape(*sz).cpu()
+    
     # Determine which device to use for computations
     if device is None:
         device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -86,7 +73,7 @@ def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize 
         imsize = 2*[int(N**.5)]
 
 
-    O0 = RtoO(R,imsize,real=real) # Estimate object before starting
+    O0 = RtoO(R,imsize) # Estimate object before starting
     np.save(os.path.join(save_path,f'Oest0_{save_name}.npy'), O0)
 
     # Set initial phase mask to 0
@@ -98,7 +85,7 @@ def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize 
         Cnv = fftconv(torch.conj(R.flipud()), R.fliplr())[:, M - 1]
         temp = torch.roll(fftcorr(R.flipud(), Cnv.unsqueeze(1).conj()).flipud(), 1, 0)[:N, :M]
         OTF = torch.mean((R.conj()) * temp, 1)
-
+        
         phi = torch.exp(1j*(OTF.angle())) # Take only phases
 
         # Update phase mask and correct matrix
@@ -109,9 +96,12 @@ def I_CLASS(R: torch.Tensor,num_iters = 100,save_path=None,save_name='0',imsize 
             print(f'Iteration {k}/{num_iters}')
 
     # Final estimation of the object and other outputs
-    OTF = OTF.cpu().abs()
-    O_est = RtoO(R,imsize,real=real)
+    MTF = ((T.abs()**2).sum(1))
+    MTF /= MTF.max()
+    MTF = torch.sqrt(MTF).cpu()
+    
+    O_est = RtoO(R,imsize)
     np.save(os.path.join(save_path, f'Oest_{save_name}.npy'), O_est)
-    np.save(os.path.join(save_path, f'OTF_{save_name}.npy'), OTF)
+    np.save(os.path.join(save_path, f'OTF_{save_name}.npy'), MTF)
 
     return R.cpu(), O_est, phi_tot.cpu(), OTF
