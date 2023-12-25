@@ -84,7 +84,7 @@ def showResults(data_path,meas_idx):
     O = np.load(os.path.join(SAVE_PATH,f'Oest_{meas_idx}.npy'))
     phi = torch.load(os.path.join(SAVE_PATH,f'phi_{meas_idx}.trc'))
     N = O0.shape[0] # Get Size of Object
-    OTF = nrm(torch.from_numpy(np.load(os.path.join(SAVE_PATH,f'OTF_{meas_idx}.npy'))).resize(*(2*[N])).T.abs())
+    MTF = nrm(torch.from_numpy(np.load(os.path.join(SAVE_PATH,f'MTF_{meas_idx}.npy'))).resize(*(2*[N])).T.abs())
 
     # Load Ground Truth if exists
     gt_path = os.path.join(SAVE_PATH,f'gt_{meas_idx}.npy')
@@ -106,7 +106,7 @@ def showResults(data_path,meas_idx):
 
     # Displaying the images in 1x2 format
     imgs = []
-    for (i,ax),im in zip(enumerate(axarr.ravel()), [O0,O,gt,tikhonov(Ok,OTF,s)]):
+    for (i,ax),im in zip(enumerate(axarr.ravel()), [O0,O,gt,tikhonov(Ok,MTF,s)]):
         img = ax.imshow(im, cmap=new_cmap)
         ax.set_title(lbls[i])
         imgs.append(img)
@@ -118,15 +118,8 @@ def showResults(data_path,meas_idx):
 
     # Update function for the slider
     def update(val):
-        imgs[-1].set_data(tikhonov(Ok,OTF,s_slider.val))
+        imgs[-1].set_data(tikhonov(Ok,MTF,s_slider.val))
         fig.canvas.draw_idle()
     # Attach the update function to the slider
     s_slider.on_changed(update)
     plt.show()
-
-    # Calculate and show PSF
-    PSF = center_image(torch.fft.fftshift(torch.fft.ifft2(OTF*phi.reshape(N, N).T)).abs().numpy())
-    plt.imshow(np.abs(PSF),cmap=new_cmap)
-    plt.title('Estimated PSF')
-    plt.show()
-
