@@ -28,7 +28,7 @@ positions = [0, 0.2, 0.4, 0.6, 0.8, 1]
 new_cmap = LinearSegmentedColormap.from_list('greenish_hot', list(zip(positions, colors)))
 
 
-# Define utility functions like crop_center, CC, center_image, shift_cross_correlation, tikhonov, and nrm.
+# Define utility functions like crop_center, CC, center_image, shift_cross_correlation, deconv, and nrm.
 # These functions are used for various image processing tasks, including deconvolution and centering.
 
 def crop_center(img, cropx, cropy):
@@ -71,7 +71,7 @@ def shift_cross_correlation(dest, src):
     mxidx = np.array(np.unravel_index(np.argmax(q), shp))
     max_loc = shp // 2 - mxidx
     return shift(src.abs().cpu().numpy(),-np.array(max_loc),mode='wrap')
-def tikhonov(Ok,kernel,sig):
+def deconv(Ok,kernel,sig):
     return nrm(torch.fft.ifft2(Ok / torch.fft.ifftshift(kernel + sig)).abs())
 nrm = lambda x:x/x.abs().max()
 
@@ -98,7 +98,7 @@ def showResults(data_path,meas_idx):
     O = nrm(torch.from_numpy(shift_cross_correlation(torch.from_numpy(gt), torch.from_numpy(O))))
     Ok = nrm(torch.fft.fft2(O))
 
-    lbls = ['Inital Object','CLASS Final','GT','Tikhonov Deconvolution']
+    lbls = ['Inital Object','CLASS Final','GT','Deconvolution']
     # Setting up the figure and axes
     fig, axarr = plt.subplots(2, 2)
     # Initial s value and initial image data
@@ -106,7 +106,7 @@ def showResults(data_path,meas_idx):
 
     # Displaying the images in 1x2 format
     imgs = []
-    for (i,ax),im in zip(enumerate(axarr.ravel()), [O0,O,gt,tikhonov(Ok,MTF,s)]):
+    for (i,ax),im in zip(enumerate(axarr.ravel()), [O0,O,gt,deconv(Ok,MTF,s)]):
         img = ax.imshow(im, cmap=new_cmap)
         ax.set_title(lbls[i])
         imgs.append(img)
@@ -118,7 +118,7 @@ def showResults(data_path,meas_idx):
 
     # Update function for the slider
     def update(val):
-        imgs[-1].set_data(tikhonov(Ok,MTF,s_slider.val))
+        imgs[-1].set_data(deconv(Ok,MTF,s_slider.val))
         fig.canvas.draw_idle()
     # Attach the update function to the slider
     s_slider.on_changed(update)
