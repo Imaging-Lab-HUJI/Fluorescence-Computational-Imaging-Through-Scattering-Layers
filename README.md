@@ -1,7 +1,7 @@
 
 # Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix
 
-This repository contains the implementation of the I-CLASS algorithm for incoherent data, such as fluorescence, as described in Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix (arxiv xx.xx). The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency enhancements as described in the paper.
+This repository contains the implementation of the I-CLASS algorithm for incoherent data, such as fluorescence, as described in Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix (arxiv 2312.16065). The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency enhancements as described in the paper.
 
 ## Content of the Repository
 
@@ -49,11 +49,11 @@ showResults(data_path, meas_idx)
 - If you use this code or the associated paper, please cite:
 
 ```
-@article{your_paper,
-  title={title_of_your_paper},
-  author={author_names},
-  journal={journal_name},
-  year={year_of_publication},
+@article{weinberg2023noninvasive,
+      title={Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix}, 
+      author={Gil Weinberg and Elad Sunray and Ori Katz},
+      year={2023},
+      eprint={2312.16065},
+      archivePrefix={arXiv},
+      primaryClass={physics.optics}
 }
-```
-
