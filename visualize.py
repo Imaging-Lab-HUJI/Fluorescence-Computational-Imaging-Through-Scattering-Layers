@@ -81,9 +81,9 @@ def showResults(data_path,meas_idx):
 
     # Load Initial Object, FInal Iteration Object,  correction phase, and |OTF| estimation
     O0 = np.load(os.path.join(SAVE_PATH,f'Oest0_{meas_idx}.npy'))
+    N = O0.shape[0] # Get Size of Object
     O = np.load(os.path.join(SAVE_PATH,f'Oest_{meas_idx}.npy'))
     phi = torch.load(os.path.join(SAVE_PATH,f'phi_{meas_idx}.trc')).resize(*(2*[N])).T
-    N = O0.shape[0] # Get Size of Object
     MTF = nrm(torch.from_numpy(np.load(os.path.join(SAVE_PATH,f'MTF_{meas_idx}.npy'))).resize(*(2*[N])).T.abs())
 
     # Load Ground Truth if exists
