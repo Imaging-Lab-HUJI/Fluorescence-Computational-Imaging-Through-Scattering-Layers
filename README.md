@@ -1,8 +1,10 @@
 
 # Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix
 
-This repository contains the implementation of the I-CLASS algorithm for incoherent data, such as fluorescence, as described in "Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix" ([arxiv 2312.16065](https://arxiv.org/abs/2312.16065)). The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency enhancements as described in the paper.
+This repository contains the implementation of the I-CLASS algorithm for incoherent data, such as fluorescence, as described in "Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix" ([arxiv 2312.16065](https://arxiv.org/abs/2312.16065)). The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency implementation of the CLASS algorithm as described in the paper.
 
+
+![](fig2.png)
 ## Content of the Repository
 
 - `ICLASS.py`: The implementation of the I-CLASS algorithm with improved memory efficiency.
