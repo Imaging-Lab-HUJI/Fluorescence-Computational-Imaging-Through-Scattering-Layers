@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: If you use this code, please cite it using these metadata.
+title: Memory-efficient implementation of CTR-CLASS algorithm
+abstract: Code for the paper "Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix" , includes a memory-efficient implementation of the CLASS algorithm
+authors:
+  - family-names: Sunray
+    given-names: Elad
+  - family-names: Weinberg
+    given-names: Gil
+    orcid: "https://orcid.org/0000-0002-3985-0673"
+  - family-names: Katz
+    given-names: Ori
+    orcid: "https://orcid.org/0000-0002-7746-6349"
+version: 1.00.0
+date-released: "2023-12-26"
+license: MIT
+repository-code: "https://github.com/Imaging-Lab-HUJI/Fluorescence-Computational-Imaging-Through-Scattering-Layers"
