@@ -1,7 +1,7 @@
 
 # Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix
 
-This repository contains the implementation of the I-CLASS algorithm for incoherent data, such as fluorescence, as described in "Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix" ([arxiv 2312.16065](https://arxiv.org/abs/2312.16065)). The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency implementation of the CLASS algorithm as described in the paper.
+This repository contains the implementation of the I-CLASS algorithm for incoherent data, such as fluorescence, as described in "Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix" ([DOI: 10.1126/sciadv.adl5218](https://doi.org/10.1126/sciadv.adl5218)). The algorithm is applied to example measurement data, which can be downloaded from the provided link. The repository includes improved memory efficiency implementation of the CLASS algorithm as described in the paper.
 
 
 ![](fig2.png)
@@ -51,11 +51,14 @@ showResults(data_path, meas_idx)
 - If you use this code or the associated paper, please cite:
 
 ```
-@article{weinberg2023noninvasive,
-      title={Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual reflection-matrix}, 
-      author={Gil Weinberg and Elad Sunray and Ori Katz},
-      year={2023},
-      eprint={2312.16065},
-      archivePrefix={arXiv},
-      primaryClass={physics.optics}
-}
+@article{
+doi:10.1126/sciadv.adl5218,
+author = {Gil Weinberg  and Elad Sunray  and Ori Katz },
+title = {Noninvasive megapixel fluorescence microscopy through scattering layers by a virtual incoherent reflection matrix},
+journal = {Science Advances},
+volume = {10},
+number = {47},
+pages = {eadl5218},
+year = {2024},
+doi = {10.1126/sciadv.adl5218},
+URL = {https://www.science.org/doi/abs/10.1126/sciadv.adl5218}}
